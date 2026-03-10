@@ -15,22 +15,30 @@ export default function BooksPage() {
       </section>
 
       <section className="grid gap-4 md:grid-cols-2">
-        {books.map((book) => (
-          <article key={book.id} className="border border-slate-300 bg-white p-5">
-            <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">{book.code}</p>
-            <h2 className="mt-1 text-xl font-medium text-slate-900">{book.title}</h2>
-            <p className="mt-1 text-sm text-slate-500">
-              {book.version} - {book.releaseDate}
+        {books.length === 0 ? (
+          <article className="border border-slate-300 bg-white p-5 md:col-span-2">
+            <p className="text-sm text-slate-600">
+              Katalog belum tersedia. Pastikan path Learning Hub valid melalui `LEARNING_HUB_PATH`.
             </p>
-            <p className="mt-4 text-sm leading-7 text-slate-700">{book.summary}</p>
-            <div className="mt-5 flex items-center justify-between">
-              <p className="text-sm text-slate-600">{book.materials.length} materi</p>
-              <Button asChild variant="outline">
-                <Link href={`/books/${book.id}`}>Buka Buku</Link>
-              </Button>
-            </div>
           </article>
-        ))}
+        ) : (
+          books.map((book) => (
+            <article key={book.id} className="border border-slate-300 bg-white p-5">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">{book.code}</p>
+              <h2 className="mt-1 text-xl font-medium text-slate-900">{book.title}</h2>
+              <p className="mt-1 text-sm text-slate-500">
+                {book.version} - {book.releaseDate}
+              </p>
+              <p className="mt-4 text-sm leading-7 text-slate-700">{book.summary}</p>
+              <div className="mt-5 flex items-center justify-between">
+                <p className="text-sm text-slate-600">{book.materials.length} materi</p>
+                <Button asChild variant="outline">
+                  <Link href={`/books/${book.id}`}>Buka Buku</Link>
+                </Button>
+              </div>
+            </article>
+          ))
+        )}
       </section>
     </main>
   );

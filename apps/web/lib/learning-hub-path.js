@@ -11,5 +11,7 @@ export function resolveLearningHubRoot() {
 export function ensureInsideRoot(rootPath, targetPath) {
   const normalizedRoot = path.resolve(rootPath);
   const normalizedTarget = path.resolve(targetPath);
-  return normalizedTarget.startsWith(normalizedRoot);
+  const relative = path.relative(normalizedRoot, normalizedTarget);
+
+  return relative !== "" && !relative.startsWith("..") && !path.isAbsolute(relative);
 }

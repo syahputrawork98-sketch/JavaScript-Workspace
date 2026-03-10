@@ -17,4 +17,4 @@ export const bookSchema = z.object({
   materials: z.array(materialSchema).min(1),
 });
 
-export const bookCatalogSchema = z.array(bookSchema).min(1);
+export const bookCatalogSchema = z.array(bookSchema);

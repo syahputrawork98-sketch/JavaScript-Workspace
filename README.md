@@ -17,7 +17,6 @@ Learning Hub menyimpan ilmu. Workspace menyajikan pengalaman belajarnya.
 - UI Components: shadcn/ui foundations
 - Database: PostgreSQL
 - ORM: Prisma
-- Authentication: Auth.js
 - Validation: Zod
 - Monorepo: pnpm workspace
 
@@ -58,8 +57,6 @@ pnpm db:studio
 Salin `.env.example` menjadi `.env`, lalu isi nilai yang valid:
 
 - `DATABASE_URL`
-- `AUTH_SECRET`
-- `AUTH_URL`
 - `LEARNING_HUB_PATH` (opsional, untuk override path source materi)
 
 ## Current Status
@@ -70,16 +67,15 @@ Salin `.env.example` menjadi `.env`, lalu isi nilai yang valid:
 - Endpoint backend awal tersedia di `GET /api/health`.
 - Halaman katalog buku tersedia di `/books`.
 - Halaman detail materi per buku tersedia di `/books/[bookId]`.
+- Jika Learning Hub tidak terdeteksi, aplikasi tetap jalan dan menampilkan empty-state katalog.
 
 ## Local Setup Checklist
 
-1. Buat database PostgreSQL lokal.
-2. Salin `.env.example` ke `.env`, isi kredensial yang valid.
+1. (Opsional) Buat database PostgreSQL lokal.
+2. Salin `.env.example` ke `.env`, isi `LEARNING_HUB_PATH` bila lokasi repo berbeda.
 3. Jalankan:
 
 ```bash
 pnpm install
-pnpm db:generate
-pnpm db:migrate
 pnpm dev
 ```

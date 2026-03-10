@@ -151,7 +151,7 @@ function collectBook(hubRoot, bookDirName) {
 function collectBooksFromLearningHub() {
   const hubRoot = resolveLearningHubRoot();
   if (!fs.existsSync(hubRoot)) {
-    throw new Error(`Learning Hub path not found: ${hubRoot}`);
+    return [];
   }
 
   const directories = fs
@@ -165,7 +165,11 @@ function collectBooksFromLearningHub() {
     .map((dirName) => collectBook(hubRoot, dirName))
     .filter((book) => book !== null);
 
-  return bookCatalogSchema.parse(rawBooks);
+  try {
+    return bookCatalogSchema.parse(rawBooks);
+  } catch {
+    return [];
+  }
 }
 
 export const books = collectBooksFromLearningHub();

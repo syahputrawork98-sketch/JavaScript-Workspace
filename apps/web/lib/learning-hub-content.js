@@ -4,6 +4,10 @@ import { cache } from "react";
 import { ensureInsideRoot, resolveLearningHubRoot } from "./learning-hub-path";
 
 export const loadMaterialMarkdown = cache(async (sourcePath) => {
+  if (!sourcePath || typeof sourcePath !== "string") {
+    return "# Materi belum tersedia\n\nPath materi belum valid.";
+  }
+
   const hubRoot = resolveLearningHubRoot();
   const absoluteTarget = path.resolve(hubRoot, sourcePath);
 
