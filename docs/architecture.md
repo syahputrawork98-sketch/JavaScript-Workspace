@@ -28,3 +28,5 @@ javascript-workspace/
 - `packages/db` tidak bergantung ke `apps/*`.
 - `packages/schemas` tidak bergantung ke Next.js atau database.
 - `packages/ui` hanya berisi komponen presentasional yang bisa dipakai lintas app.
+- Integrasi Learning Hub mengikuti struktur v2: `rak (Rxx) -> buku (Bxx) -> materi`.
+- Arsip `v1` dibaca lewat katalog terpisah dan diekspos pada route `/legacy`.

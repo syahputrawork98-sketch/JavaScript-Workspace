@@ -34,7 +34,10 @@ export default function RootLayout({ children }) {
                   Home
                 </Link>
                 <Link href="/books" className="rounded-lg px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900">
-                  Buku
+                  v2
+                </Link>
+                <Link href="/legacy" className="rounded-lg px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900">
+                  v1
                 </Link>
               </nav>
             </div>

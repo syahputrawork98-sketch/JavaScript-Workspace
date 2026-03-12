@@ -11,7 +11,7 @@ function materialTypeLabel(type) {
   return "Referensi";
 }
 
-export default function BookReaderClient({ book, selectedMaterialId, markdown }) {
+export default function BookReaderClient({ backHref, backLabel, book, selectedMaterialId, markdown }) {
   const selectedMaterial =
     book.materials.find((material) => material.id === selectedMaterialId) || book.materials[0];
 
@@ -25,17 +25,17 @@ export default function BookReaderClient({ book, selectedMaterialId, markdown })
             return (
               <Link
                 key={material.id}
-                href={`/books/${book.id}?material=${material.id}`}
+                href={`${backHref}/${book.id}?material=${material.id}`}
                 className={[
                   "rounded px-2 py-2 text-sm transition-colors",
                   active ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100",
                 ].join(" ")}
               >
                 <p>
-                  {index + 1}. {material.title}
+                  {material.code} - {material.title}
                 </p>
                 <p className={active ? "text-xs uppercase text-slate-300" : "text-xs uppercase text-slate-500"}>
-                  {materialTypeLabel(material.type)}
+                  {materialTypeLabel(material.type)} / urutan {material.order || index + 1}
                 </p>
               </Link>
             );
@@ -47,13 +47,15 @@ export default function BookReaderClient({ book, selectedMaterialId, markdown })
         <p className="mb-2 text-center text-xl font-medium text-slate-900">penjelasan</p>
         <p className="mb-1 text-sm uppercase tracking-wide text-slate-500">{materialTypeLabel(selectedMaterial.type)}</p>
         <h2 className="mb-1 text-2xl font-medium text-slate-900">{selectedMaterial.title}</h2>
+        <p className="mb-1 text-sm text-slate-600">{selectedMaterial.code}</p>
+        <p className="mb-4 text-sm leading-7 text-slate-700">{selectedMaterial.summary}</p>
         <p className="mb-5 text-sm text-slate-500">Sumber: {selectedMaterial.sourcePath}</p>
 
         <article className="reader-prose">{renderMarkdownToElements(markdown)}</article>
 
         <div className="mt-8">
           <Button asChild variant="outline">
-            <Link href="/books">Kembali ke Daftar Buku</Link>
+            <Link href={backHref}>{backLabel}</Link>
           </Button>
         </div>
       </section>

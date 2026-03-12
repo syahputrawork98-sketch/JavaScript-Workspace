@@ -37,6 +37,14 @@ javascript-workspace/
 `-- pnpm-workspace.yaml
 ```
 
+## Learning Hub Integration
+
+- Workspace membaca JavaScript Learning Hub v2 dengan struktur `Rxx-*` untuk rak.
+- Setiap rak berisi buku `Bxx-*`.
+- Materi dibaca dari folder seperti `chapters/`, `topics/`, atau `exercises/` di level buku.
+- Folder `v1/` pada Learning Hub dianggap arsip dan tidak dipakai sebagai sumber katalog aktif.
+- Home menampilkan jalur aktif `v2`, sementara arsip `v1` tersedia di halaman terpisah `/legacy`.
+
 ## Development Commands
 
 ```bash
